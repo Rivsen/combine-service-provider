@@ -1,0 +1,18 @@
+{
+    "name": "rswork/combine-service-provider",
+    "description": "A small PHP script and some clever URL rewriting designed to speed up the loading of pages that use many or large css and javascript files, based on rakaz/combine.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rivsen Tan",
+            "email": "rivsen1003@gmail.com"
+        }
+    ],
+    "require": {
+        "php":   ">=5.3",
+        "silex/silex" : ">=1.0"
+    },
+    "autoload": {
+        "psr-4": { "Rswork\\Silex\\": "src" }
+    }
+}
