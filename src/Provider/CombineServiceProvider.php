@@ -28,6 +28,7 @@ class CombineServiceProvider implements ServiceProviderInterface, ControllerProv
             'css_path' => 'css',
             'js_path' => 'js',
             'mount_to' => '/',
+            'match_url' => '/combine',
             'bind_to' => 'rswork.combine',
             'expires' => 604800, // default is one week
         );
@@ -37,6 +38,7 @@ class CombineServiceProvider implements ServiceProviderInterface, ControllerProv
         $app['combine.cache_path'] = $app['combine.default_options']['cache_path'];
         $app['combine.css_path'] = $app['combine.default_options']['css_path'];
         $app['combine.js_path'] = $app['combine.default_options']['js_path'];
+        $app['combine.match_url'] = $app['combine.default_options']['match_url'];
         $app['combine.mount_to'] = $app['combine.default_options']['mount_to'];
         $app['combine.bind_to'] = $app['combine.default_options']['bind_to'];
         $app['combine.expires'] = $app['combine.default_options']['expires'];
@@ -67,7 +69,7 @@ class CombineServiceProvider implements ServiceProviderInterface, ControllerProv
 
         $combine
             ->match(
-                '/combine',
+                $app['combine.match_url'],
                 function( Request $request, Application $app ){
                     $files = '';
 
