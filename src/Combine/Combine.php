@@ -111,9 +111,9 @@ class Combine
         while (list(,$element) = each($elements)) {
             $path = realpath($type_path . DIRECTORY_SEPARATOR . $element);
             if( !file_exists( $path ) ) {
-                $contents .= "{$element} File not Found!\n\n";
+                $contents .= ";console.log('{$element} File not Found!');\n\n";
             } else {
-                $contents .= file_get_contents($path)."\n\n";
+                $contents .= file_get_contents($path).";\n\n";
             }
         }
 
