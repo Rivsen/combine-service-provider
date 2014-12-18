@@ -32,7 +32,7 @@ class Combine
                 . DIRECTORY_SEPARATOR
                 . rtrim($options[$type.'_path'], '\/\\')
                 . DIRECTORY_SEPARATOR
-                . rtrim($base, '\/\\')
+                . trim($base, '\/\\')
             )
             ,'\/\\'
         );
