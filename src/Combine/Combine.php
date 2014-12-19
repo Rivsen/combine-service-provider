@@ -29,9 +29,11 @@ class Combine
 
         $type_path = rtrim(
             realpath(
-                rtrim($options['base_path'], '\/\\')
-                . DIRECTORY_SEPARATOR
-                . rtrim($options[$type.'_path'], '\/\\')
+                rtrim(
+                    rtrim($options['base_path'], '\/\\')
+                    . DIRECTORY_SEPARATOR
+                    . rtrim($options[$type.'_path'], '\/\\')
+                , '\/\\')
                 . DIRECTORY_SEPARATOR
                 . trim($base, '\/\\')
             )
