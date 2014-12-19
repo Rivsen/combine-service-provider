@@ -114,9 +114,17 @@ class Combine
         while (list(,$element) = each($elements)) {
             $path = realpath($type_path . DIRECTORY_SEPARATOR . $element);
             if( !file_exists( $path ) ) {
-                $contents .= ";console.log('{$element} File not Found!');\n\n";
+                if( $type == 'js' ) {
+                    $contents .= ";console.log('{$element} File not Found!');\n\n";
+                } else {
+                    $contents .= "/** {$element} not found! **/\n\n";
+                }
             } else {
-                $contents .= ';'.file_get_contents($path).";\n\n";
+                if( $type == 'js' ) {
+                    $contents .= ';'.file_get_contents($path).";\n\n";
+                } else {
+                    $contents .= file_get_contents($path)."\n\n";
+                }
             }
         }
 
