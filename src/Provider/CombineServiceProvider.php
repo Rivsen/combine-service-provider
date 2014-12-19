@@ -23,8 +23,8 @@ class CombineServiceProvider implements ServiceProviderInterface, ControllerProv
     {
         $app['combine.default_options'] = array(
             'cache' => false,
-            'base_path' => false,
-            'cache_path' => false,
+            'base_path' => sys_get_temp_dir() .DIRECTORY_SEPARATOR. 'combine',
+            'cache_path' => sys_get_temp_dir() .DIRECTORY_SEPARATOR. 'combine' .DIRECTORY_SEPARATOR. 'cache',
             'css_path' => 'css',
             'js_path' => 'js',
             'mount_to' => '/',

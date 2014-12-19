@@ -13,7 +13,8 @@ class Combine
 
     public function __construct( $options )
     {
-        $this->options['base_path'] = sys_get_temp_dir().DIRECTORY_SEPARATOR.'rivsen.combine';
+        $this->options['base_path'] = sys_get_temp_dir().DIRECTORY_SEPARATOR.'combine';
+        $this->options['cache_path'] = sys_get_temp_dir().DIRECTORY_SEPARATOR.'combine'.DIRECTORY_SEPARATOR.'cache';
         $this->options = array_merge( $this->options, $options );
     }
 
@@ -100,8 +101,8 @@ class Combine
 
         $cachefile = 'cache-' . $hash . '.' . $type;
 
-        if( file_exists( $options['base_path'].DIRECTORY_SEPARATOR.$options['cache_path'].DIRECTORY_SEPARATOR.$cachefile ) ) {
-            $result['cache_file'] = $options['base_path'].DIRECTORY_SEPARATOR.$options['cache_path'].DIRECTORY_SEPARATOR.$cachefile;
+        if( file_exists( $options['cache_path'].DIRECTORY_SEPARATOR.$cachefile ) ) {
+            $result['cache_file'] = $options['cache_path'].DIRECTORY_SEPARATOR.$cachefile;
             return $result;
         }
 
@@ -113,16 +114,16 @@ class Combine
             if( !file_exists( $path ) ) {
                 $contents .= ";console.log('{$element} File not Found!');\n\n";
             } else {
-                $contents .= file_get_contents($path).";\n\n";
+                $contents .= ';'.file_get_contents($path).";\n\n";
             }
         }
 
-        if ($fp = fopen($options['base_path'].DIRECTORY_SEPARATOR.$options['cache_path'].DIRECTORY_SEPARATOR.$cachefile, 'wb')) {
+        if ($fp = fopen($options['cache_path'].DIRECTORY_SEPARATOR.$cachefile, 'wb')) {
             fwrite($fp, $contents);
             fclose($fp);
         }
 
-        $result['cache_file'] = $options['base_path'].DIRECTORY_SEPARATOR.$options['cache_path'].DIRECTORY_SEPARATOR.$cachefile;
+        $result['cache_file'] = $options['cache_path'].DIRECTORY_SEPARATOR.$cachefile;
         return $result;
     }
 }
