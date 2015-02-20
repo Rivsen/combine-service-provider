@@ -7,7 +7,7 @@ use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Rswork\Silex\Combine\Combine;
+use Rswork\Component\Combine\Combine;
 
 class CombineServiceProvider implements ServiceProviderInterface, ControllerProviderInterface
 {

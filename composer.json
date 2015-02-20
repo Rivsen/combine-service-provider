@@ -10,7 +10,8 @@
     ],
     "require": {
         "php":   ">=5.3",
-        "silex/silex" : ">=1.0"
+        "silex/silex" : "~1.0",
+        "rswork/combine" : "~1.0"
     },
     "autoload": {
         "psr-4": { "Rswork\\Silex\\": "src" }
