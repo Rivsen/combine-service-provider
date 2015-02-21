@@ -8,6 +8,7 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Rswork\Component\Combine\Combine;
+use Rswork\Silex\Extension\Combine as CombineExtension;
 
 class CombineServiceProvider implements ServiceProviderInterface, ControllerProviderInterface
 {
@@ -54,6 +55,13 @@ class CombineServiceProvider implements ServiceProviderInterface, ControllerProv
 
             return new Combine( $options );
         });
+
+        if( isset( $app['twig'] ) ) {
+            $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig, $app) {
+                $twig->addExtension(new CombineExtension($app));
+                return $twig;
+            }));
+        }
     }
 
     public function boot( Application $app )
